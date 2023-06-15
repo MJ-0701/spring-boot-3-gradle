@@ -1,13 +1,13 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-buildscript {
-    dependencies {
-        classpath("gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:1.0.10")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.21")
-        classpath("org.jetbrains.kotlin:kotlin-allopen:1.8.21")
-        classpath("org.jetbrains.kotlin:kotlin-noarg:1.8.21")
-    }
-}
+//buildscript {
+//    dependencies {
+//        classpath("gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:1.0.10")
+//        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.21")
+//        classpath("org.jetbrains.kotlin:kotlin-allopen:1.8.21")
+//        classpath("org.jetbrains.kotlin:kotlin-noarg:1.8.21")
+//    }
+//}
 
 plugins {
 
@@ -21,12 +21,12 @@ plugins {
 
 }
 
-allOpen {
-    // Spring Boot 3.X.X
-    annotation("jakarta.persistence.Entity")
-    annotation("jakarta.persistence.MappedSuperclass")
-    annotation("jakarta.persistence.Embeddable")
-}
+//allOpen {
+//    // Spring Boot 3.X.X
+//    annotation("jakarta.persistence.Entity")
+//    annotation("jakarta.persistence.MappedSuperclass")
+//    annotation("jakarta.persistence.Embeddable")
+//}
 
 
 group = "com.example"
@@ -51,7 +51,7 @@ dependencies {
 //    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     // Spring Boot 3.X.X
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.0.5")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.1.0")
     implementation("com.vladmihalcea:hibernate-types-60:2.21.1")
     implementation("com.infobip:infobip-spring-data-jpa-querydsl-boot-starter:8.1.1")
     kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
@@ -68,7 +68,6 @@ tasks.withType<KotlinCompile> {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "17"
     }
-
     sourceSets.main {
         withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet::class) {
             kotlin.srcDir("$buildDir/generated/source/kapt/main")
