@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  config:
+    activate:
+      on-profile: profile1
+
+  jpa:
+    hibernate:
+      ddl-auto: 'create-drop'
+    properties:
+      hibernate:
+        format_sql: true
+    generate-ddl: true
+    defer-datasource-initialization: true
+    database: mysql
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/test_schema1?useSSl=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: jack
+    password: jack2718

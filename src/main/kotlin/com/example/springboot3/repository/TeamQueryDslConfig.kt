@@ -1,6 +1,7 @@
 package com.example.springboot3.repository
 
 import com.example.springboot3.domain.team.QTeam
+import com.example.springboot3.domain.team.QTeam.*
 import com.querydsl.jpa.impl.JPAQueryFactory
 import jakarta.persistence.EntityManager
 import org.springframework.stereotype.Component
@@ -12,6 +13,6 @@ class TeamQueryDslConfig (
 ) {
 
     fun test() {
-        queryFactory.select(QTeam.team).from(QTeam.team).fetch()
+        queryFactory.select(team).from(team).fetch()
     }
 }

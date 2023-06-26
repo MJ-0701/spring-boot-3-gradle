@@ -1,0 +1,30 @@
+spring: #공통환경
+  config:
+    activate:
+      on-profile: "common"
+  sql:
+    init:
+      mode: always
+  # file
+  servlet:
+    multipart:
+      maxFileSize: 100MB
+      maxRequestSize: 100MB
+
+  # Swagger
+  mvc:
+    path match:
+      matching-strategy: ant_path_matcher
+server:
+  tomcat:
+    connection-timeout: 5000
+
+# Log
+logging:
+  file:
+    name: ${user.dir}/log/event-check.log
+    max-history: 7
+    max-size: 10MB
+  level:
+    org.hibernate.sql: debug
+    org.hibernate.type: trace
