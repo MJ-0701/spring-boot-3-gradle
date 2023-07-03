@@ -1,13 +1,12 @@
-package com.example.springboot3.domain.team
+package com.example.springboot3.domain.team.entity
 
-import com.example.springboot3.domain.user.Member
+import com.example.springboot3.domain.member.entity.Member
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
 import jakarta.persistence.OneToMany
 
 
@@ -19,7 +18,10 @@ data class Team(
     @Column(name = "team_id")
     val id : Long,
 
+    @Column(name = "team_name")
+    val teamName : String,
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "team")
-    private val members : HashSet<Member>
+    private val members : MutableSet<Member?>
 
 )

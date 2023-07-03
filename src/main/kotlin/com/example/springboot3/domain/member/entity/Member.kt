@@ -1,6 +1,6 @@
-package com.example.springboot3.domain.user
+package com.example.springboot3.domain.member.entity
 
-import com.example.springboot3.domain.team.Team
+import com.example.springboot3.domain.team.entity.Team
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
@@ -17,6 +17,9 @@ data class Member (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private val memberId : Long,
+
+    @Column(name = "member_name")
+    private val memberName : String,
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "team_id", insertable = false, updatable = false, foreignKey = ForeignKey(name = "FK_TEAM_TO_MEMBER"))

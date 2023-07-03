@@ -4,6 +4,8 @@ spring:
       local: profile1
       dev: profile2,common
       prod: profile3,common
+
 default:
-  string:
+  string :
+
 
