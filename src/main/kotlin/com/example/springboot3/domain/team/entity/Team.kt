@@ -21,7 +21,10 @@ data class Team(
     @Column(name = "team_name")
     val teamName : String,
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "team")
-    private val members : MutableSet<Member?>
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "team")
+//    private val members : MutableSet<Member?>
 
-)
+) {
+    @OneToMany(mappedBy = "team")
+    lateinit var members : MutableList<Member>
+}

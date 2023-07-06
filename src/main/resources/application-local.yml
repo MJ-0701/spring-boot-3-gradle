@@ -8,11 +8,11 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: 'create-drop'
+      ddl-auto: 'create'
     properties:
       hibernate:
         format_sql: true
-      show-sql: true
+    show-sql: true
     generate-ddl: true
     defer-datasource-initialization: true
     database: mysql
@@ -22,3 +22,6 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: jack
     password: jack2718
+logging:
+  level:
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE

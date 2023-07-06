@@ -13,21 +13,44 @@ import org.springframework.stereotype.Component
 
 @Component
 class MemberQueryDslRepository(
-    val queryFactory : JPAQueryFactory,
-    em : EntityManager
+    val queryFactory: JPAQueryFactory,
+    em: EntityManager
 ) : QuerydslPageAndSortRepository(em, Member::class.java) {
 
-    fun memberTeamFetchJoin() : List<MemberDto.MemberDtoResponse> {
+    fun getAllMemberList(): List<Member> {
+        return queryFactory.select(
+            member
+        ).from(
+            member
+        ).fetch()
+    }
+
+    fun getMemberTeamList(teamId: Long): List<Member> {
+        return queryFactory.select(
+            member
+        ).from(
+            member
+        ).where(
+            member.team.id.eq(teamId)
+        ).fetch()
+    }
+
+    fun memberTeamFetchJoin(teamId: Long): List<MemberDto.MemberDtoResponse> {
         return queryFactory.select(
             Projections.constructor(
                 MemberDto.MemberDtoResponse::class.java,
                 member.memberId,
                 member.memberName,
-                member.team
+                team.id,
+                team.teamName
             )
         ).from(
             member
-        ).leftJoin(member.team, team).fetch()
+        ).leftJoin(team).on(
+            member.team.eq(team)
+        ).where(
+            member.team.id.eq(teamId)
+        ).fetch()
 
     }
 

@@ -1,5 +1,7 @@
 package com.example.springboot3.repository.team
 
+import com.example.springboot3.domain.member.entity.QMember
+import com.example.springboot3.domain.member.entity.QMember.*
 import com.example.springboot3.domain.member.web.dto.MemberDto
 import com.example.springboot3.domain.team.entity.QTeam.team
 import com.example.springboot3.domain.team.entity.Team
@@ -11,23 +13,12 @@ import jakarta.persistence.EntityManager
 import org.springframework.stereotype.Component
 
 @Component
-class TeamQueryDslRepository (
-    val queryFactory : JPAQueryFactory,
-    em : EntityManager
-) : QuerydslPageAndSortRepository(em, Team::class.java){
+class TeamQueryDslRepository(
+    val queryFactory: JPAQueryFactory,
+    em: EntityManager
+) : QuerydslPageAndSortRepository(em, Team::class.java) {
 
-    fun teamDtoTest() : List<TeamDto.TeamDtoResponse>{
-        return queryFactory.select(
-            Projections.constructor(
-                TeamDto.TeamDtoResponse::class.java,
-                team.id,
-                team.teamName,
-                team.members
-            )
-        ).from().fetch()
-    }
-
-    fun test() {
-        queryFactory.select(team).from(team).fetch()
+    fun test(): List<Team> {
+        return queryFactory.select(team).from(team).fetch()
     }
 }

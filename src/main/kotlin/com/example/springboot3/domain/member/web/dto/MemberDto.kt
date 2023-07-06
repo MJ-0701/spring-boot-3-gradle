@@ -8,7 +8,9 @@ object MemberDto {
     data class MemberDtoResponse @QueryProjection constructor(
         val memberId : Long,
         val memberName : String,
-        val team : Team?
+        val teamId : Long?,
+        val teamName : String?,
+
     )
 
 }

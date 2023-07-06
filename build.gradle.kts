@@ -44,6 +44,9 @@ dependencies {
     runtimeOnly("com.mysql:mysql-connector-j")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
+    //하이버네이트
+    implementation("org.hibernate.validator:hibernate-validator:7.0.1.Final")
+
     // 코틀린
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")

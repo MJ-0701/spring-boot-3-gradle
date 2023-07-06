@@ -21,7 +21,8 @@ data class Member (
     @Column(name = "member_name")
     private val memberName : String,
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "team_id", insertable = false, updatable = false, foreignKey = ForeignKey(name = "FK_TEAM_TO_MEMBER"))
+    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "team_id", insertable = false, updatable = false, foreignKey = ForeignKey(name = "FK_TEAM_TO_MEMBER")) // insertable,updatable = false -> 백엔드에서 DB에 직접적인 영향을 주지 않기 위함.
+    @JoinColumn(name = "team_id", updatable = false, foreignKey = ForeignKey(name = "FK_TEAM_TO_MEMBER"))
     private val team : Team
 )

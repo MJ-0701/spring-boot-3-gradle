@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
+import org.springframework.transaction.annotation.Transactional
 
 @SpringBootTest
 @ActiveProfiles("local")
@@ -23,11 +24,11 @@ class TeamQueryDslRepositoryTest(
 
     @BeforeEach
     fun `시작전_세팅`() {
-        val teamAMemberSet : MutableSet<Member?> = mutableSetOf(null)
-        val teamBMemberSet : MutableSet<Member?> = mutableSetOf(null)
+        val teamAList : MutableList<Member> = mutableListOf()
+        val teamBList : MutableList<Member> = mutableListOf()
 
-        val teamA = Team(1,"teamA", teamAMemberSet)
-        val teamB = Team(2,"teamB", teamBMemberSet)
+        val teamA = Team(1,"teamA")
+        val teamB = Team(2,"teamB")
 
         val member1 = Member(1, "멤버1", teamA)
         val member2 = Member(2, "멤버2", teamA)
@@ -35,12 +36,12 @@ class TeamQueryDslRepositoryTest(
         val member4 = Member(4, "멤버4", teamB)
         val member5 = Member(5, "멤버5", teamA)
 
-        teamAMemberSet.add(member1)
-        teamAMemberSet.add(member2)
-        teamAMemberSet.add(member5)
+        teamAList.add(member1)
+        teamAList.add(member2)
+        teamAList.add(member5)
 
-        teamBMemberSet.add(member3)
-        teamBMemberSet.add(member4)
+        teamBList.add(member3)
+        teamBList.add(member4)
 
 
         teamRepository.save(teamA)
@@ -52,17 +53,21 @@ class TeamQueryDslRepositoryTest(
         memberRepository.save(member4)
         memberRepository.save(member5)
 
-
-
-
         println("시작")
+        println("teamA : $teamA")
+        println("teamB : $teamB")
+        println("mbmer1 : $member1")
 
     }
 
+//    @Transactional // 붙여주면 테스트일 경우 자동으로 insert 데이터를 roll-back 해줌
     @Test
     fun `기본_테스트`() {
-        println("테스트 : ${memberQueryDslRepository.memberTeamFetchJoin()}")
-
+        println("테스트")
+        println("멤버 List : ${memberQueryDslRepository.getAllMemberList()}")
+        println("멤버 List2 : ${memberQueryDslRepository.getMemberTeamList(1L)}")
+        println("멤버 조인 테스트 : ${memberQueryDslRepository.memberTeamFetchJoin(1L)}")
+        println("팀 List : ${teamQueryDslRepository.test()}")
     }
 
 }

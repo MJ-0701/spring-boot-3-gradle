@@ -6,8 +6,9 @@ import com.querydsl.core.annotations.QueryProjection
 object TeamDto {
 
     data class TeamDtoResponse @QueryProjection constructor(
-        val teamId : Long,
-        val teamName : String,
-        val members : Set<Member>
+        val teamId : Long?,
+        val teamName : String?,
+        val memberId : Long?,
+        val memberName : String?,
     )
 }
